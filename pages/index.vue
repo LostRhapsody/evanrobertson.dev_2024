@@ -60,7 +60,7 @@
             }"
         >
             <template #item="{ item }">
-                <p class="text-lg block md:hidden">{{ item.label }}</p>
+                <p class="text-white text-lg block md:hidden">{{ item.label }}</p>
                 <SkillCard
                     :key="item.item.title"
                     :title="item.item.title"
@@ -76,6 +76,7 @@
             :items="skill_cards.cards[0].skills"
         />
         <Contact id="contact"/>
+        <Copyright/>
     </div>
 </template>
 

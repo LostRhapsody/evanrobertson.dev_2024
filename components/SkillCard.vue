@@ -1,5 +1,5 @@
 <template>
-    <div class="skill-card">
+    <div class="skill-card py-4 px-2 lg:p-4">
         <div class="grid grid-cols-2 gap-4">
             <UCard
                 v-for="item in items"
@@ -59,7 +59,6 @@ export default {
 .skill-card {
     transition: all 0.5s ease;
     color: #fff;
-    padding: 1rem;
     border-radius: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.125);
     backdrop-filter: blur(16px) saturate(171%);
