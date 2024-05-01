@@ -1,12 +1,26 @@
 <template>
-  <div>
-    <NuxtPage/>
-  </div>
+    <div
+        class="background"
+    >
+        <NuxtPage />
+    </div>
 </template>
 
 <style>
-:root{
-    background: rgb(34,195,73);
-    background: linear-gradient(0deg, rgb(19, 110, 42) 0%, rgba(0,0,0,1) 80%);
+.background {
+    background-image: url("/background.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 4rem;
+}
+/* mobile phone media query */
+@media (max-width: 640px) {
+    .background {
+        padding: 1rem;
+    }
 }
 </style>
+
+<script setup>
+</script>
