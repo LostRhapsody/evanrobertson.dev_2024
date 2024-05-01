@@ -2,7 +2,7 @@
     <!-- header area -->
     <div class="hidden xl:flex relative" id="home">
         <!-- title - doesn't move with page -->
-        <h1 class="text-4xl text-start flex w-full justify-between">
+        <h1 class="text-4xl text-start text-white flex w-full justify-between">
             <a href="/"> evanrobertson.dev </a>
             <div>
             <UTooltip text="Github Profile"
@@ -65,7 +65,7 @@
     <div class="block xl:hidden" id="home">
         <!-- title - doesn't move with page -->
         <h1
-            class="text-2xl text-center flex items-center justify-between"
+            class="text-2xl text-center text-white flex items-center justify-between"
         >
             <a href="/"> evanrobertson.dev </a>
             <div>

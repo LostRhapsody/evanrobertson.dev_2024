@@ -2,7 +2,7 @@
     <div class="mx-auto text-center" id="home">
         <MyNav />
         <div
-            class="blur__element bg-white/20 h-[80vh] my-20 flex justify-center items-center flex-col"
+            class="blur__element text-white bg-white/20 h-[80vh] my-20 flex justify-center items-center flex-col"
         >
             <MyHeader :title="header_titles.Home" />
             <p class="text-xl">Scroll down to learn more.</p>
@@ -50,10 +50,11 @@
                 list: {
                     tab: {
                         inactive: 'dark:text-black text-black',
+                        active: 'dark:text-white text-white',
                     },
-                    background: 'dark:bg-gray-300/70',
+                    background: 'dark:bg-gray-300/70 bg-gray-300/70',
                     marker: {
-                        background: 'dark:bg-gray-900/70',
+                        background: 'dark:bg-gray-900/70 bg-gray-900/70',
                     },
                 },
             }"
@@ -67,7 +68,7 @@
                 />
             </template>
         </UTabs>
-        <p>Icons by <a target="_blank" href="https://icons8.com">Icons8</a></p>
+        <p class="text-white">Icons by <a target="_blank" href="https://icons8.com">Icons8</a></p>
         <MyHeader id="skills" :title="header_titles.Skills" />
         <SkillCard
             :key="skill_cards.cards[0].title"

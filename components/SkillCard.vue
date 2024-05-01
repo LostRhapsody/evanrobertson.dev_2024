@@ -4,7 +4,7 @@
             <UCard
                 v-for="item in items"
                 :key="item"
-                :ui="{ background: 'dark:bg-gray-700/50', ring: 'ring-0' }"
+                :ui="{ background: 'dark:bg-gray-700/50 bg-gray-700/50', ring: 'ring-0' }"
             >
                 <div class="flex items-center justify-center text-md lg:text-xl">
                     {{ item.name }}

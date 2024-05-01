@@ -1,5 +1,5 @@
 <template>
-    <div class="about-me text-xl bg-black/70 px-2 py-8">
+    <div class="about-me text-xl bg-black/70 px-2 py-8 text-white">
         <h1 class="header-text text-5xl lg:text-8xl py-8 my-8">About</h1>
         <span class="font-extrabold">
         <p>I'm a professional, full-stack programmer.</p>
