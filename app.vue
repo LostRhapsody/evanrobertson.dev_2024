@@ -1,6 +1,6 @@
 <template>
     <div
-        class="background"
+        class="background p-4 lg:p-16"
     >
         <NuxtPage />
     </div>
@@ -12,14 +12,13 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    padding: 4rem;
 }
 /* mobile phone media query */
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
     .background {
         padding: 1rem;
     }
-}
+} */
 </style>
 
 <script setup>
