@@ -3,7 +3,7 @@
     <div class="hidden xl:flex relative" id="home">
         <!-- title - doesn't move with page -->
         <h1 class="text-4xl text-start text-white flex w-full justify-between">
-            <a href="/"> evanrobertson.dev </a>
+            <a href="/" class="flex items-center"> <img class="h-[34px] w-[32px]" src="/favicon-32x32.png" />evanrobertson.dev </a>
             <div>
             <UTooltip text="Github Profile"
                 ><a href="https://github.com/LostRhapsody">
@@ -67,7 +67,7 @@
         <h1
             class="text-2xl text-center text-white flex items-center justify-between"
         >
-            <a href="/"> evanrobertson.dev </a>
+            <a href="/" class="flex items-center"> <img class="h-[34px] w-[32px]" src="/favicon-32x32.png" />evanrobertson.dev </a>
             <div>
             <UTooltip text="Github Profile"
                 ><a href="https://github.com/LostRhapsody">

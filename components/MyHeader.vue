@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="header-text text-5xl lg:text-8xl py-8 my-8">{{ title }}</h1>
+        <h1 class="header-text text-5xl lg:text-8xl font-medium py-8 my-8">{{ title }}</h1>
     </div>
 </template>
 
@@ -13,8 +13,7 @@ defineProps(["title"]);
 <style>
 
 .header-text {
-    /* background: -webkit-linear-gradient(#eee, #333); */
-    background: -webkit-linear-gradient(#818181, #ffffff);
+    background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.5s ease;

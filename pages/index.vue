@@ -1,14 +1,14 @@
 <template>
     <div class="mx-auto text-center" id="home">
         <MyNav />
-        <div
-            class="blur__element text-white bg-white/20 h-[80vh] my-20 flex justify-center items-center flex-col"
-        >
-            <MyHeader :title="header_titles.Home" />
-            <p class="text-xl">Scroll down to learn more.</p>
-            <span class="material-symbols-outlined text-4xl animate-bounce mt-4"
-                >arrow_downward</span
+            <div
+                class="blur__element text-white bg-white/20 h-[80vh] my-20 flex justify-center items-center flex-col"
             >
+            <MyHeader :title="header_titles.Home" />
+                <p class="text-xl">Scroll down to learn more.</p>
+                <span class="material-symbols-outlined text-4xl animate-bounce mt-4"
+                    >arrow_downward</span
+                >
         </div>
         <AboutMe id="about"/>
         <MyHeader :title="header_titles.Projects" />
@@ -613,6 +613,7 @@ const skill_tabs = [
         item: skill_cards.cards[6],
     },
 ];
+
 </script>
 
 <style scoped>
