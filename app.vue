@@ -13,12 +13,6 @@
     background-attachment: fixed;
     background-size: cover;
 }
-/* mobile phone media query */
-/* @media (max-width: 640px) {
-    .background {
-        padding: 1rem;
-    }
-} */
 </style>
 
 <script setup>

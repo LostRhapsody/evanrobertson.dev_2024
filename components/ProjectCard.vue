@@ -7,7 +7,7 @@
         <div class="card" :id="title">
             <div class="card__content">
                 <!-- <h2 class="card__name">{{ title }}</h2> -->
-                <img :src="image" alt="Project Image" class="card__image" />
+                <img :src="image" alt="Project Image" class="card__image" loading="lazy" />
             </div>
             <div class="card__name__image"></div>
             <div class="card__gloss"></div>
@@ -30,12 +30,41 @@
                 }"
             >
                 <template #header>
-                    <div class="flex items-center justify-between flex-col lg:flex-row">
-                        <h3
-                            class="text-xl lg:text-5xl font-semibold leading-6 text-gray-900 dark:text-white"
-                        ><a :href="url" target="_blank" class="underline leading-normal">
-                            {{ title }} - {{ url }}</a>
-                        </h3>
+                    <div
+                        class="flex items-center justify-between flex-col lg:flex-row"
+                    >
+                        <div>
+                            <h3
+                                class="text-xl lg:text-5xl font-semibold leading-6 text-gray-900 dark:text-white"
+                            >
+                                <a
+                                    :href="url"
+                                    target="_blank"
+                                    class="underline leading-normal"
+                                >
+                                    {{ title }}</a
+                                >
+                                <br />
+                                <a
+                                    v-if="github !== 'none'"
+                                    :href="github"
+                                    target="_blank"
+                                    class="underline leading-normal"
+                                    >Github</a
+                                >
+                            </h3>
+                            <!-- New section for tags -->
+                            <div class="flex flex-wrap mt-4 gap-2">
+                                <span
+                                    v-for="(tag, index) in tags"
+                                    :key="index"
+                                    class="px-3 py-1 text-sm font-semibold rounded-full tag-pill"
+                                    :style="getTagStyle(tag)"
+                                >
+                                    {{ tag }}
+                                </span>
+                            </div>
+                        </div>
                         <UButton
                             color="gray"
                             variant="outline"
@@ -59,9 +88,39 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 // setup component params
-defineProps(["title", "description", "image", "url"]);
+const props = defineProps([
+    "title",
+    "description",
+    "image",
+    "url",
+    "github",
+    "tags",
+]);
 const isOpen = ref(false);
+const tagColors = ref({});
+
+// Function to generate random gradient for tags
+const generateRandomGradient = () => {
+    const hue1 = Math.floor(Math.random() * 360);
+    const hue2 = (hue1 + 40) % 360; // Offset by 40 degrees for a nice contrast
+    return `linear-gradient(135deg, hsl(${hue1}, 70%, 60%), hsl(${hue2}, 70%, 60%))`;
+};
+
+onMounted(() => {
+    props.tags.forEach((tag) => {
+        tagColors.value[tag] = generateRandomGradient();
+    });
+});
+
+const getTagStyle = (tag) => {
+    return {
+        background: tagColors.value[tag],
+        color: "white",
+        textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
+    };
+};
 </script>
 
 <style scoped>
@@ -146,6 +205,14 @@ const isOpen = ref(false);
 }
 img {
     border-radius: 2rem;
+}
+.tag-pill {
+    transition: all 0.3s ease;
+}
+
+.tag-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 /* Mobile phone screen media query */
 @media screen and (max-width: 600px) {

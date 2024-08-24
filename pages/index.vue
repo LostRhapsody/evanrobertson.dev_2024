@@ -1,16 +1,66 @@
 <template>
     <div class="mx-auto text-center" id="home">
         <MyNav />
-            <div
-                class="blur__element text-white bg-white/20 h-[80vh] my-20 flex justify-center items-center flex-col"
-            >
+        <div
+            class="blur__element text-white bg-white/20 h-[80vh] my-20 flex justify-center items-center flex-col"
+        >
             <MyHeader :title="header_titles.Home" />
-                <p class="text-xl">Scroll down to learn more.</p>
-                <span class="material-symbols-outlined text-4xl animate-bounce mt-4"
-                    >arrow_downward</span
-                >
+            <p class="text-xl">Scroll down to learn more.</p>
+            <span class="material-symbols-outlined text-4xl animate-bounce mt-4"
+                >arrow_downward</span
+            >
         </div>
-        <AboutMe id="about"/>
+        <AboutMe id="about" />
+        <MyHeader id="proficiencies" :title="header_titles.Proficiencies" />
+        <div class="flex items-center justify-center text-md lg:text-xl font-extrabold pb-4">
+            These are technologies I've worked with the most, which I try and focus most of my learning and efforts on.
+        </div>
+        <div class="prof-card space-y-8">
+            <UCard
+                v-for="item in proficiencies"
+                class="prof-card-child"
+                :key="item"
+                :ui="{
+                    background: 'dark:bg-gray-700/50 bg-gray-700/50',
+                    ring: 'ring-0',
+                }"
+            >
+                <div
+                    class="flex items-center justify-center text-md lg:text-xl"
+                >
+                    {{ item.label }}
+                    <span
+                        v-if="item.icon !== 'false' && item.icon !== 'progress'"
+                        class="material-symbols-outlined text-4xl"
+                    >
+                        {{ item.icon }}
+                    </span>
+                    <span class="progress" v-else-if="item.icon === 'progress'">
+                        <svg
+                            class="text-green-600"
+                            width="50px"
+                            height="50px"
+                            version="1.1"
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                class="PRGS-branding-shape"
+                                d="M95.52,29.33h0v51a3.93,3.93,0,0,1-1.78,3.08l-1.67,1L79.35,91.76l-8.59,5-1.78,1V42.6L21.23,15,43.91,1.93,46,0.74a3.94,3.94,0,0,1,3.56,0L81,18.9l14.51,8.38v2.05ZM58.36,48.72l-9.79-5.66L25.66,29.83a4,4,0,0,0-3.56,0L1.77,41.57,0,42.6,34.49,62.51v39.83l20.3-11.73,1.79-1a3.94,3.94,0,0,0,1.78-3.08V48.72ZM0,82.43L23.86,96.21V68.63Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </span>
+                    <a v-else :href="item.link">
+                        <img :src="item.image" alt="Skill Image" />
+                    </a>
+                </div>
+                <p class="text-white text-lg block">
+                    {{ item.description }}
+                </p>
+            </UCard>
+        </div>
         <MyHeader :title="header_titles.Projects" />
         <div id="projects" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
             <ProjectCard
@@ -18,8 +68,10 @@
                 :key="card.title"
                 :title="card.title"
                 :description="card.description"
+                :tags="card.tags"
                 :image="card.image"
                 :url="card.links[0].url"
+                :github="card.links[1].url"
             />
         </div>
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
@@ -28,18 +80,22 @@
                 :key="card.title"
                 :title="card.title"
                 :description="card.description"
+                :tags="card.tags"
                 :image="card.image"
                 :url="card.links[0].url"
+                :github="card.links[1].url"
             />
         </div>
-        <div class="grid grid-cols-1 gap-6 mb-6">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
             <ProjectCard
                 v-for="card in projects3.cards"
                 :key="card.title"
                 :title="card.title"
                 :description="card.description"
+                :tags="card.tags"
                 :image="card.image"
                 :url="card.links[0].url"
+                :github="card.links[1].url"
             />
         </div>
         <MyHeader id="tech" :title="header_titles.Tech" />
@@ -60,7 +116,9 @@
             }"
         >
             <template #item="{ item }">
-                <p class="text-white text-lg block md:hidden">{{ item.label }}</p>
+                <p class="text-white text-lg block md:hidden">
+                    {{ item.label }}
+                </p>
                 <SkillCard
                     :key="item.item.title"
                     :title="item.item.title"
@@ -68,15 +126,17 @@
                 />
             </template>
         </UTabs>
-        <p class="text-white">Icons by <a target="_blank" href="https://icons8.com">Icons8</a></p>
+        <p class="text-white">
+            Icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </p>
         <MyHeader id="skills" :title="header_titles.Skills" />
         <SkillCard
             :key="skill_cards.cards[0].title"
             :title="skill_cards.cards[0].title"
             :items="skill_cards.cards[0].skills"
         />
-        <Contact id="contact"/>
-        <Copyright/>
+        <Contact id="contact" />
+        <Copyright />
     </div>
 </template>
 
@@ -256,9 +316,9 @@ const skill_cards = {
                     link: "https://icons8.com/icon/40253/jquery",
                 },
                 {
-                    name:"Probably more",
-                    icon: "unknown_document",                    
-                }
+                    name: "Probably more",
+                    icon: "unknown_document",
+                },
             ],
         },
         {
@@ -283,9 +343,9 @@ const skill_cards = {
                     link: "https://www.progress.com/openedge",
                 },
                 {
-                    name:"Probably more",
-                    icon: "unknown_document",                    
-                }
+                    name: "Probably more",
+                    icon: "unknown_document",
+                },
             ],
         },
         {
@@ -310,7 +370,7 @@ const skill_cards = {
                     link: "https://icons8.com/icon/108784/javascript",
                 },
                 {
-                    name:"TypeScript",
+                    name: "TypeScript",
                     icon: "false",
                     image: "/typescript.svg",
                     link: "https://icons8.com/icon/uJM6fQYqDaZK/typescript",
@@ -322,10 +382,10 @@ const skill_cards = {
                     link: "https://icons8.com/icon/13441/python",
                 },
                 {
-                    name:"Ruby",
+                    name: "Ruby",
                     icon: "false",
                     image: "/ruby.svg",
-                    link: "https://icons8.com/icon/22189/ruby-programming-language"
+                    link: "https://icons8.com/icon/22189/ruby-programming-language",
                 },
                 {
                     name: "Rust",
@@ -394,53 +454,53 @@ const skill_cards = {
                     link: "https://icons8.com/icon/ezj3zaVtImPg/visual-studio",
                 },
                 {
-                    name:".NET",
+                    name: ".NET",
                     icon: "false",
                     image: "/dot-net.svg",
                     link: "https://icons8.com/icon/1BC75jFEBED6/.net-framework",
-                }        
+                },
             ],
         },
         {
             title: "DevOps",
             skills: [
                 {
-                    name:"Docker",
+                    name: "Docker",
                     icon: "false",
                     image: "/docker.svg",
-                    link:"https://icons8.com/icon/22813/docker"
+                    link: "https://icons8.com/icon/22813/docker",
                 },
                 {
-                    name:"Probably more",
-                    icon: "unknown_document",                    
-                }
+                    name: "Probably more",
+                    icon: "unknown_document",
+                },
             ],
         },
         {
             title: "Web Servers",
             skills: [
                 {
-                    name:"Nginx",
+                    name: "Nginx",
                     icon: "false",
                     image: "/nginx.svg",
-                    link:"https://icons8.com/icon/t2x6DtCn5Zzx/nginx"
+                    link: "https://icons8.com/icon/t2x6DtCn5Zzx/nginx",
                 },
                 {
-                    name:"Apache",
+                    name: "Apache",
                     icon: "false",
                     image: "/apache.svg",
-                    link:"https://icons8.com/icon/QFcVqyh6lBh6/tomcat"
+                    link: "https://icons8.com/icon/QFcVqyh6lBh6/tomcat",
                 },
                 {
-                    name:"Nitro",
+                    name: "Nitro",
                     icon: "false",
                     image: "/nitro.svg",
-                    link:"https://nitro.unjs.io/"
+                    link: "https://nitro.unjs.io/",
                 },
                 {
-                    name:"Probably more",
-                    icon: "unknown_document",                    
-                }
+                    name: "Probably more",
+                    icon: "unknown_document",
+                },
             ],
         },
         {
@@ -483,9 +543,9 @@ const skill_cards = {
                     link: "https://insomnia.rest/",
                 },
                 {
-                    name:"Probably more",
-                    icon: "unknown_document",                    
-                }
+                    name: "Probably more",
+                    icon: "unknown_document",
+                },
             ],
         },
     ],
@@ -493,11 +553,26 @@ const skill_cards = {
 
 const projects1 = {
     title: "Projects",
-    cards: [        
+    cards: [
         {
             title: "Budget Budgie",
-            description: "Open-Source Budgeting App (WIP)",
-            tags: ["Vue.js", "Nuxt", "Tailwind CSS", "Typescript", "Vercel"],
+            description:
+                "Fully open-source budgeting app (WIP). Great for groceries and setting financial goals and budgets.",
+            tags: [
+                "Vue.js",
+                "Nuxt",
+                "Tailwind CSS",
+                "Typescript",
+                "Vercel",
+                "Vecel KV",
+                "OpenSource",
+                "Supabase",
+                "OAuth",
+                "Axios",
+                "Vite",
+                "Progressive Web App",
+                "Bun",
+            ],
             links: [
                 {
                     title: "Website",
@@ -519,6 +594,10 @@ const projects1 = {
                     title: "Website",
                     url: "https://blakecyber.com",
                 },
+                {
+                    title: "none",
+                    url: "none",
+                },
             ],
             image: "/blakecyber.webp",
         },
@@ -530,11 +609,15 @@ const projects2 = {
         {
             title: "Rhapsody Web Design",
             description: "Web design company website",
-            tags: ["Typescript", "Tailwind"],
+            tags: ["Typescript", "Tailwind", "Prisma"],
             links: [
                 {
                     title: "Website",
                     url: "https://rhapsodyweb.ca/",
+                },
+                {
+                    title: "none",
+                    url: "none",
                 },
             ],
             image: "/rhapsody.webp",
@@ -542,21 +625,31 @@ const projects2 = {
         {
             title: "Slothtime",
             description: "Minimalistic time tracking app",
-            tags: ["Jquery", "CSS", "HTML", "Javascript"],
+            tags: [
+                "Jquery",
+                "CSS",
+                "HTML",
+                "Javascript",
+                "Client-first Caching",
+            ],
             links: [
                 {
                     title: "Website",
                     url: "https://slothtime.dev/",
+                },
+                {
+                    title: "GitHub",
+                    url: "https://github.com/LostRhapsody/slothtime",
                 },
             ],
             image: "/slothtime.webp",
         },
     ],
 };
-const projects3={
+const projects3 = {
     title: "Projects",
     cards: [
-    {
+        {
             title: "Verif.ai",
             description: "Demo tool to authenticate businesses",
             tags: [
@@ -565,19 +658,45 @@ const projects3={
                 "Tailwind CSS",
                 "Chat-GPT",
                 "LLM",
-                ,
                 "Vercel",
             ],
             links: [
                 {
                     title: "Website",
-                    url: "verifai-demo.vercel.app",
+                    url: "https://verifai-demo.vercel.app",
+                },
+                {
+                    title: "none",
+                    url: "none",
                 },
             ],
             image: "/verifai.webp",
         },
-    ]
-}
+        {
+            title: "Generic Property Management",
+            description:
+                "A splash page for a property management company (No affiliation). This website was a trial run for using AI to see how a single developer could increase productivity and still output a high-quality product. It was a huge success in my books as Claude performed very well, and I was there to rectify the more complex issues Claude couldn't solve.",
+            tags: [
+                "HTML",
+                "JS",
+                "CSS",
+                "Claude Sonnect (Pair Programming)",
+                "Netlify",
+            ],
+            links: [
+                {
+                    title: "Generic Property Management Website",
+                    url: "https://bayland-properties.netlify.app",
+                },
+                {
+                    title: "Generic Property Management GitHub",
+                    url: "https://github.com/LostRhapsody/Property_management_demo",
+                },
+            ],
+            image: "/bayland.webp",
+        },
+    ],
+};
 
 const header_titles = {
     Home: "Hi, I'm Evan.",
@@ -585,7 +704,35 @@ const header_titles = {
     Projects: "Projects",
     Skills: "Skills",
     Tech: "Technologies",
+    Proficiencies: "Proficiencies",
 };
+
+const proficiencies = [
+    {
+        label: "Progress OpenEdge",
+        description:
+            "Progress OpenEdge is a suite of tools for building enterprise-level applications. I've worked in Progress for several years.",
+        icon: "progress",
+        image: "/progress.svg",
+        link: "https://www.progress.com/openedge",
+    },
+    {
+        label: "Rust",
+        description:
+            "Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety. I've studied the entire Rust book and supplemental material and build all my (new) open-source projects with it.",
+        icon: "false",
+        image: "/rust.svg",
+        link: "https://icons8.com/icon/haeAxVQEIg0F/rust-programming-language",
+    },
+    {
+        label: "JavaScript",
+        description:
+            "JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. I've worked with JS for many, many years and am very familiar with several frameworks and the odd kinks it comes with.",
+        icon: "false",
+        image: "/javascript.svg",
+        link: "https://icons8.com/icon/108784/javascript",
+    },
+];
 
 const skill_tabs = [
     {
@@ -613,7 +760,6 @@ const skill_tabs = [
         item: skill_cards.cards[6],
     },
 ];
-
 </script>
 
 <style scoped>
@@ -630,6 +776,26 @@ const skill_tabs = [
     );
     filter: blur(5px);
     animation: clear_blur 3s forwards;
+    border-radius: 2rem;
+}
+
+.prof-card {
+    transition: all 0.5s ease;
+    color: #fff;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    backdrop-filter: blur(16px) saturate(171%);
+    -webkit-backdrop-filter: blur(16px) saturate(171%);
+    background-color: rgba(195, 195, 195, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.prof-card:hover {
+    /* border-radius: 3rem; */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.prof-card-child {
     border-radius: 2rem;
 }
 

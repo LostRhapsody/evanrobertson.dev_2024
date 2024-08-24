@@ -1,12 +1,16 @@
 <template>
-    <div class="about-me text-xl bg-black/70 px-2 py-8 text-white">
-        <h1 class="header-text text-5xl lg:text-8xl font-medium py-8 my-8">About</h1>
+    <div class="about-me text-xl px-2 py-8 text-white">
+        <h1 class="header-text text-5xl lg:text-8xl font-medium py-8 my-8">
+            About
+        </h1>
         <span class="font-extrabold">
-        <p>I'm a professional, full-stack programmer.</p>
-        <br />
-        <p>I work on Enterprise ERP, WMS, and CMS systems full time.</p>
-        <br />
-        <p>If you're interested in recruiting me for a project, contact me:</p>
+            <p>I'm a professional, full-stack programmer.</p>
+            <br />
+            <p>I work on Enterprise ERP, WMS, and CMS systems full time.</p>
+            <br />
+            <p>
+                If you're interested in recruiting me for a project, contact me:
+            </p>
         </span>
         <br />
         <button>
@@ -17,19 +21,19 @@
 
 <style scoped>
 .header-text {
-    background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
+    background: linear-gradient(45deg, #fc466b 0%, #3f5efb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.5s ease;
     border-bottom: 3px solid rgba(255, 255, 255, 0);
 }
-.header-text:hover{
+.header-text:hover {
     border-bottom: 3px solid rgba(255, 255, 255, 1);
 }
 .about-me {
     background: radial-gradient(
         140% 107.13% at 50% 100%,
-        transparent 37.41%,
+        #e1aaaa85 37.41%,
         #c3c3c380 80.27%,
         #b8b8b8 100%
     );
